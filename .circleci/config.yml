@@ -16,7 +16,7 @@ jobs:
           name: Run tests
           command: |
             mkdir ~/project/test-report
-            pytest --junit-xml=test-report/report.xml $(circleci tests glob "openapi_server/**/test_*.py" | circleci tests split)
+            pytest --junit-xml=test-report/report.xml $(circleci tests glob "openapi_server/**/test_*.py" | circleci tests split --split-by=timings)
       - store_test_results:
           path: ~/project/test-report/report.xml
 
