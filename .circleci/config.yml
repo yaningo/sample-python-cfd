@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-            mkdir project/test-report
+            mkdir ~/test-report
             pytest --junit-xml=test-report/report.xml
       - store_test_results:
           path: ~/test-report/report.xml
