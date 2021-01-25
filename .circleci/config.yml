@@ -7,6 +7,7 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/python:3.8
+    parallelism: 2
     steps:
       - checkout
       - python/install-packages:
@@ -15,7 +16,7 @@ jobs:
           name: Run tests
           command: |
             mkdir ~/project/test-report
-            pytest --junit-xml=test-report/report.xml
+            pytest --junit-xml=test-report/report.xml $(circleci tests glob "openapi_server/**/test_*.py" | circleci tests split)
       - store_test_results:
           path: ~/project/test-report/report.xml
 
