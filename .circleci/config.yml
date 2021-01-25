@@ -22,7 +22,6 @@ jobs:
           path: ~/project/test-report
       - store_artifacts:
           path: ~/project/test-report
-
 workflows:
   sample:
     jobs:
