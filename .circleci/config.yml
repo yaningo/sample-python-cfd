@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   build-and-test:
-    working_directory: ~/studio
+    #working_directory: ~/studio
     docker:
       - image: cimg/python:3.8
     parallelism: 2
