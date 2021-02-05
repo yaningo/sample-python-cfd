@@ -5,6 +5,7 @@ orbs:
 
 jobs:
   build-and-test:
+    parallelism: 2
     docker:
       - image: cimg/python:3.8
     steps:
