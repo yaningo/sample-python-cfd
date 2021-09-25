@@ -11,7 +11,7 @@ from openapi_server.models.menu_item import MenuItem  # noqa: E501
 from openapi_server.test import BaseTestCase
 
 
-class TestMenuController(BaseTestCase):
+class TestOuiouiController(BaseTestCase):
     """MenuController integration test stubs"""
 
     def test_add_menu_item(self):
