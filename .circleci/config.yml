@@ -16,9 +16,9 @@ jobs:
           name: Run tests
           command: |
             set -e
-            echo ".TestCartController" > class.txt
-            echo ".TestImageController" >> class.tst
-            echo ".TestOuiOuiController" >> class.tst
+            echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
+            echo "openapi_server.test.test_menu_controller.TestOuiouiController" >> class.tst
+            echo "openapi_server.test.test_image_controller.TestImageController" >> class.tst
             TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname class.txt)
             mkdir -p test-results
             pytest --verbose --junitxml=test-results/junit.xml $TEST_FILES
