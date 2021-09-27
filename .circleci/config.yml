@@ -16,10 +16,10 @@ jobs:
           name: Run tests
           command: |
             set -e
-            echo "TestCartController" > class.txt
+            #echo "TestCartController" > class.txt
             #echo "TestMenuController" >> class.txt
             #echo "TestImageController" >> class.txt
-            TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname class.txt)
+            TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname TestCartController)
             mkdir -p test-results
             pytest openapi_server/test/test_cart_controller.py::TestCartController --verbose --junitxml=test-results/junit.xml $TEST_FILES
       - store_test_results:
