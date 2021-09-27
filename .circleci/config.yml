@@ -19,7 +19,7 @@ jobs:
             echo openapi_server.test.test_menu_controller.TestMenuController > Test.tst
             echo openapi_server.test.test_menu_controller.TestImageController >> Test.tst
             echo openapi_server.test.test_menu_controller.TestOuiOuiController >> Test.tst
-            TEST_FILES=$(circleci tests glob "Test*Controller" | circleci tests split --split-by=timings --timings-type=classname)
+            TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname openapi_server.test.test_menu_controller.TestOuiOuiController)
             mkdir -p test-results
             pytest --verbose --junitxml=test-results/junit.xml $TEST_FILES
       - store_test_results:
