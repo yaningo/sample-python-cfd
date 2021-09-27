@@ -19,9 +19,9 @@ jobs:
             #echo "TestCartController" > class.txt
             #echo "TestMenuController" >> class.txt
             #echo "TestImageController" >> class.txt
-            TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname TestCartController)
+            #TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname TestCartController)
             mkdir -p test-results
-            pytest openapi_server/test/test_cart_controller.py::TestCartController --verbose --junitxml=test-results/junit.xml $TEST_FILES
+            pytest --verbose --junitxml=test-results/junit.xml openapi_server/test/test_cart_controller.py::TestCartController
       - store_test_results:
           path: test-results
       - store_artifacts:
