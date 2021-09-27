@@ -16,10 +16,10 @@ jobs:
           name: Run tests
           command: |
             set -e
-            TEST_FILES=$(circleci tests glob "openapi_server/**/test_*.py")
-            cat $TEST_FILES
-            echo $TEST_FILES
-            TEST_FILES=$(circleci tests glob "openapi_server/**/test_*.py" | circleci tests split --split-by=timings --timings-type=classname)
+            echo TestCartController > TestCartController.tst
+            echo TestImageController > TestImageController.tst
+            echo TestOuiOuiController > TestOuiOuiController.tst
+            TEST_FILES=$(circleci tests glob "Test_*.tst" | circleci tests split --split-by=timings --timings-type=classname)
             mkdir -p test-results
             pytest --verbose --junitxml=test-results/junit.xml $TEST_FILES
       - store_test_results:
