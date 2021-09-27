@@ -21,7 +21,7 @@ jobs:
             echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
             TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname class.txt)
             mkdir -p test-results
-            pytest --verbose --junitxml=test-results/junit.xml $TEST_FILES
+            pytest -k "Test.Controller"--verbose --junitxml=test-results/junit.xml $TEST_FILES
       - store_test_results:
           path: test-results
       - store_artifacts:
