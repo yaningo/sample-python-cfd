@@ -15,7 +15,7 @@ from openapi_server.test import BaseTestCase
 class TestCartController(BaseTestCase):
     """CartController integration test stubs"""
     
-    def test_add_cart_item(self, record_xml_attribute):
+    def test_add_cart_item(self):
         """Test case for add_cart_item
 
         Add a menu item a cart
@@ -42,8 +42,6 @@ class TestCartController(BaseTestCase):
             response, 204, "Response body is : " + response.data.decode("utf-8")
         )
         
-        record_xml_attribute("classname", "TestCartController")
-
 
     def test_delete_cart_item(self):
         """Test case for delete_cart_item
