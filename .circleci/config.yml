@@ -23,6 +23,7 @@ jobs:
             TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname class.txt)
             echo $TEST_FILES
             TESTFILES=$(echo $TEST_FILES | tr "/" "." | sed 's/\(.*\)\//\1.py::/')
+            echo $TESTFILES
             mkdir -p test-results
             pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
             
