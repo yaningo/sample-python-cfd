@@ -22,7 +22,7 @@ jobs:
             TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname class.txt)
             echo $TEST_FILES
             mkdir -p test-results
-            pytest -c --verbose --junitxml=test-results/junit.xml $TEST_FILES
+            pytest -c pytest.ini --verbose --junitxml=test-results/junit.xml $TEST_FILES
       - store_test_results:
           path: test-results
       - store_artifacts:
