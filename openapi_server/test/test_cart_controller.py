@@ -16,9 +16,7 @@ class TestCartController(BaseTestCase):
     """CartController integration test stubs"""
     
     def test_add_cart_item(self):
-        """Test case for add_cart_item
-
-        
+        """Test case for add_cart_item  
         
         Add a menu item a cart
         """
@@ -44,10 +42,7 @@ class TestCartController(BaseTestCase):
             response, 204, "Response body is : " + response.data.decode("utf-8")
         )
         
-    def test_function(record_xml_attribute):
-        record_xml_attribute("classname", "TestCartController")
-        assert True
-            
+
     def test_delete_cart_item(self):
         """Test case for delete_cart_item
 
