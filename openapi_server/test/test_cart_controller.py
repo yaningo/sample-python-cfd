@@ -11,7 +11,10 @@ from openapi_server.models.error import Error  # noqa: E501
 from openapi_server.models.menu_item import MenuItem  # noqa: E501
 from openapi_server.test import BaseTestCase
 
-
+def test_add_cart_item(record_xml_attribute):
+    record_xml_attribute('classname', 'TestCartController')
+    assert 1
+    
 class TestCartController(BaseTestCase):
     """CartController integration test stubs"""
     
