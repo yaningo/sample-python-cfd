@@ -44,9 +44,9 @@ class TestCartController(BaseTestCase):
             response, 204, "Response body is : " + response.data.decode("utf-8")
         )
         
-            def test_function(record_xml_attribute):
-                record_xml_attribute("classname", "TestCartController")
-                assert True
+    def test_function(record_xml_attribute):
+        record_xml_attribute("classname", "TestCartController")
+        assert True
             
     def test_delete_cart_item(self):
         """Test case for delete_cart_item
