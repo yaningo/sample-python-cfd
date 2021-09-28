@@ -15,13 +15,11 @@ from openapi_server.test import BaseTestCase
 class TestCartController(BaseTestCase):
     """CartController integration test stubs"""
     
-    def test_add_cart_item(record_xml_attribute):
-        record_xml_attribute('classname', 'TestCrapController')
-        assert 1
-    
-    def test_add_cart_item(self):
+    def test_add_cart_item(self, record_xml_attribute):
         """Test case for add_cart_item
 
+        record_xml_attribute("classname", "custom_classname")
+        
         Add a menu item a cart
         """
         menu_item = {
