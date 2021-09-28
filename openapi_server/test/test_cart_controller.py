@@ -16,8 +16,8 @@ class TestCartController(BaseTestCase):
     """CartController integration test stubs"""
     
     def test_record_property2(record_xml_attribute):
-    record_xml_attribute('classname', 'TestCartController')
-    assert 1
+        record_xml_attribute('classname', 'TestCartController')
+        assert True
 
     def test_add_cart_item(self):
         """Test case for add_cart_item
