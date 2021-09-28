@@ -19,8 +19,7 @@ jobs:
             echo "openapi_server/test/test_cart_controller.py::TestCartController" > class.txt
             echo "openapi_server/test/test_image_controller.py::TestImageController" >> class.txt
             echo "openapi_server/test/test_menu_controller.py::TestMenuController" >> class.txt
-            #TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname class.txt)
-            TEST_FILES=$(circleci tests glob "openapi_server/test/test_menu_controller.py::TestMenuController" "openapi_server/test/test_cart_controller.py::TestCartController" "openapi_server/test/test_image_controller.py::TestImageController"| circleci tests split --split-by=timings --timings-type=classname)
+            TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname class.txt)
             echo $TEST_FILES
             mkdir -p test-results
             pytest --verbose --junitxml=test-results/junit.xml $TEST_FILES
