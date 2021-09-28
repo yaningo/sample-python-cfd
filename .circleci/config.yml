@@ -16,13 +16,16 @@ jobs:
           name: Run tests
           command: |
             set -e
-            echo "openapi_server/test/test_cart_controller.py::TestCartController" > class.txt
-            echo "openapi_server/test/test_image_controller.py::TestImageController" >> class.txt
-            echo "openapi_server/test/test_menu_controller.py::TestMenuController" >> class.txt
+            echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
+            echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
+            echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
+            
             TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname class.txt)
             echo $TEST_FILES
+            TESTFILES=$(echo $TEST_FILES | tr "/" "." | sed 's/\(.*\)\//\1.py::/'
             mkdir -p test-results
-            pytest --verbose --junitxml=test-results/junit.xml $TEST_FILES
+            pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
+            
       - store_test_results:
           path: test-results
       - store_artifacts:
