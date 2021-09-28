@@ -18,7 +18,7 @@ class TestCartController(BaseTestCase):
     def test_add_cart_item(self, record_xml_attribute):
         """Test case for add_cart_item
 
-        record_xml_attribute("classname", "custom_classname")
+        
         
         Add a menu item a cart
         """
@@ -44,6 +44,7 @@ class TestCartController(BaseTestCase):
             response, 204, "Response body is : " + response.data.decode("utf-8")
         )
         
+        record_xml_attribute = {"classname", "custom_classname"}
             
     def test_delete_cart_item(self):
         """Test case for delete_cart_item
