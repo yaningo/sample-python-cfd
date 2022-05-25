@@ -20,7 +20,7 @@ jobs:
             echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
             echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
             
-            TEST_FILES=$(circleci test glob "openapi_server/**/*.py" | circleci tests split --split-by=timings)
+            TEST_FILES=$(circleci tests glob "openapi_server/**/*.py" | circleci tests split --split-by=timings)
             echo $TEST_FILES
             #TESTFILES=$(echo $TEST_FILES | tr "." "/" | sed 's/\(.*\)\//\1.py::/')
             #echo $TESTFILES
