@@ -16,12 +16,14 @@ jobs:
           name: Run tests
           command: |
             set -e
-            touch class.txt
-            #echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
-            #echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
-            #echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
+            #touch class.txt
+            echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
+            echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
+            echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
             
-            TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname class.txt)
+            TEST_FILES=$(circleci tests glob openapi.* | circleci tests split --split-by=timings --timings-type=classname)
+            
+            #TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname class.txt)
             echo $TEST_FILES
             TESTFILES=$(echo $TEST_FILES | tr "." "/" | sed 's/\(.*\)\//\1.py::/')
             echo $TESTFILES
