@@ -16,8 +16,8 @@ jobs:
           name: Run tests
           command: |
             set -e
-            mkdir controllers/beeboo
-            mv controllers/* controllers/beeboo
+            mkdir openapi_server/controllers/beeboo
+            mv openapi_server/controllers/* openapi_server/controllers/beeboo
             shopt
             echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
             echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
