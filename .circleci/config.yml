@@ -19,6 +19,7 @@ jobs:
             set -e
             mkdir openapi_server/controllers/beeboo
             mv openapi_server/controllers/*.py openapi_server/controllers/beeboo
+            mv openapi_server/controllers/beeboo/security_controller_.py openapi_server/controllers
             shopt -s globstar
             shopt
             echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
