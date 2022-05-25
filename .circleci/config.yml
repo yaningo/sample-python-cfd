@@ -16,19 +16,17 @@ jobs:
           name: Run tests
           command: |
             set -e
-            #touch class.txt
             echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
             echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
             echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
             
-            TEST_FILES=$(circleci tests glob "openapi.*" | circleci tests split --split-by=timings)
+            TEST_FILES=$(circleci tests glob "fake/**/not_a_real_file*" | circleci tests split --split-by=timings)
             
-            #TEST_FILES=$(circleci tests split --split-by=timings --timings-type=classname class.txt)
             echo $TEST_FILES
             TESTFILES=$(echo $TEST_FILES | tr "." "/" | sed 's/\(.*\)\//\1.py::/')
             echo $TESTFILES
             mkdir -p test-results
-            #pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
+            pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
             
       - store_test_results:
           path: test-results
