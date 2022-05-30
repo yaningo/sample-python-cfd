@@ -13,19 +13,23 @@ jobs:
       - checkout
 #       - python/install-packages:
 #           pkg-manager: pip
+      - run: |
+          echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
+          echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
+          echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
       - run:
           name: Run tests
           working_directory: /tmp
           command: |
-            set -e
-            mkdir openapi_server/controllers/beeboo
-            mv openapi_server/controllers/*.py openapi_server/controllers/beeboo
-            mv openapi_server/controllers/beeboo/security_controller_.py openapi_server/controllers
+            #set -e
+            #mkdir openapi_server/controllers/beeboo
+            #mv openapi_server/controllers/*.py openapi_server/controllers/beeboo
+            #mv openapi_server/controllers/beeboo/security_controller_.py openapi_server/controllers
             #shopt -s globstar
             #shopt
-            echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
-            echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
-            echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
+            #echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
+            #echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
+            #echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
             
             #TEST_FILES=$(circleci tests glob "openapi_server/**/*.py" | circleci tests split --split-by=timings)
             circleci tests glob "./openapi_server/{models,test}/*.py" > tests_list.txt
