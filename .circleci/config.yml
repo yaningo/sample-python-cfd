@@ -15,6 +15,7 @@ jobs:
 #           pkg-manager: pip
       - run:
           name: Run tests
+          working_directory: /tmp
           command: |
             set -e
             mkdir openapi_server/controllers/beeboo
