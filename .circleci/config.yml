@@ -40,7 +40,7 @@ jobs:
             #TESTFILES=$(echo $TEST_FILES | tr "." "/" | sed 's/\(.*\)\//\1.py::/')
             #echo $TESTFILES
             mkdir -p test-results
-            #pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
+            pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
             
       - store_test_results:
           path: ./test-results
