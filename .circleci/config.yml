@@ -43,9 +43,9 @@ jobs:
             #pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
             
       - store_test_results:
-          path: test-results
+          path: ./test-results
       - store_artifacts:
-          path: test-results
+          path: ./test-results
 workflows:
   sample:
     jobs:
