@@ -26,7 +26,7 @@ jobs:
             #mv openapi_server/controllers/beeboo/security_controller_.py openapi_server/controllers
             #shopt -s globstar
             #shopt
-            sudo apt install python3-pip
+            sudo apt update && sudo apt install python3-pip
             sudo pip install -U pytest
             echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
             echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
