@@ -26,6 +26,7 @@ jobs:
             #mv openapi_server/controllers/beeboo/security_controller_.py openapi_server/controllers
             #shopt -s globstar
             #shopt
+            sudo pip install -U pytest
             echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
             echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
             echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
