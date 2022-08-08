@@ -9,19 +9,19 @@ jobs:
     docker:
       - image: cimg/python:3.8
     steps:
-#       - checkout
-# #       - python/install-packages:
-# #           pkg-manager: pip
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
 #       - run: |
 #           echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
 #           echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
 #           echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
 
-      - run:
-          name: Install stuff
-          command: |
-            sudo apt update && sudo apt install python3-pip
-            sudo pip install -U pytest
+#       - run:
+#           name: Install stuff
+#           command: |
+#             sudo apt update && sudo apt install python3-pip
+#             sudo pip install -U pytest
 
       - run:
           name: Run tests
