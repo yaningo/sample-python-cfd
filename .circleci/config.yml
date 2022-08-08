@@ -38,7 +38,8 @@ jobs:
             #echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
             #echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
             
-            TEST_FILES=$(circleci tests glob "./openapi_server/**/*.py" | circleci tests split --split-by=timings)
+            circleci tests glob "./openapi_server/**/*.py"
+            TEST_FILES=$(circleci tests glob "./openapi_server/**/*.py" | circleci tests split)
             echo $TEST_FILES
             #circleci tests glob "./openapi_server/{models,test}/*.py" > tests_list.txt
             #cat tests_list.txt
