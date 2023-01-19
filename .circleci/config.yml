@@ -32,17 +32,17 @@ jobs:
             #mv openapi_server/controllers/*.py openapi_server/controllers/beeboo
             #mv openapi_server/controllers/beeboo/security_controller_.py openapi_server/controllers
             #shopt -u globstar
-            shopt
+            #shopt
 
             #echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
             #echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
             #echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
             
             #circleci tests glob '**/openapi_server/**/*.py'
-            circleci tests glob "./openapi_server/[!models]/*.py" > tests_list.txt
+            #circleci tests glob "./openapi_server/[!models]/*.py" > tests_list.txt
             #TEST_FILES=$(circleci tests glob "./openapi_server/**/*.py" | circleci tests split)
             #echo $TEST_FILES
-            #circleci tests glob "./openapi_server/{controllers,test}/*.py" > tests_list.txt
+            circleci tests glob "./openapi_server/{controllers,test}/*.py" > tests_list.txt
             cat tests_list.txt
             #SPLIT_LIST=$(circleci tests split --split-by=timings tests_list.txt)
             #echo $SPLIT_LIST
