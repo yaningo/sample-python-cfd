@@ -38,7 +38,8 @@ jobs:
             #echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
             #echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
             
-            circleci tests glob '**/openapi_server/**/*.py'
+            #circleci tests glob '**/openapi_server/**/*.py'
+            circleci tests glob "./openapi_server/[!models]/*.py" > tests_list.txt
             TEST_FILES=$(circleci tests glob "./openapi_server/**/*.py" | circleci tests split)
             echo $TEST_FILES
             #circleci tests glob "./openapi_server/{models,test}/*.py" > tests_list.txt
@@ -49,7 +50,7 @@ jobs:
             #TESTFILES=$(echo $TEST_FILES | tr "." "/" | sed 's/\(.*\)\//\1.py::/')
             #echo $TESTFILES
             #mkdir -p test-results
-            #pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
+            pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
             
       - store_test_results:
           path: ./test-results
