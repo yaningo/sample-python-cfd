@@ -33,6 +33,8 @@ jobs:
             #mv openapi_server/controllers/beeboo/security_controller_.py openapi_server/controllers
             #shopt -u globstar
             #shopt
+            
+            echo "Hello"
 
             #echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
             #echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
