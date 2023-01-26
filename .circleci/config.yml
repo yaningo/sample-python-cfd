@@ -51,7 +51,7 @@ jobs:
             #echo $TESTFILES
             #mkdir -p test-results
             #pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
-       - when:
+      - when:
           condition:
             equal: ["split-test", << pipeline.git.branch >>]
           steps:
