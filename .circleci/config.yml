@@ -33,13 +33,15 @@ jobs:
             #mv openapi_server/controllers/beeboo/security_controller_.py openapi_server/controllers
             #shopt -u globstar
             #shopt
+            
+            echo "Hello"
 
             #echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
             #echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
             #echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
             
             #circleci tests glob '**/openapi_server/**/*.py'
-            #circleci tests glob "./openapi_server/[!models]/*.py" > tests_list.txt
+
             #TEST_FILES=$(circleci tests glob "./openapi_server/**/*.py" | circleci tests split)
             #echo $TEST_FILES
             circleci tests glob "./openapi_server/{controllers,test}/*.py" > tests_list.txt
@@ -51,11 +53,14 @@ jobs:
             #echo $TESTFILES
             #mkdir -p test-results
             #pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
-            
-      - store_test_results:
-          path: ./test-results
-      - store_artifacts:
-          path: ./test-results
+      - when:
+          condition:
+            equal: ["split-test", << pipeline.git.branch >>]
+          steps:
+            - store_test_results:
+                path: ./test-results
+            - store_artifacts:
+                path: ./test-results
 workflows:
   sample:
     jobs:
