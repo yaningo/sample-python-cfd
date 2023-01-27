@@ -34,7 +34,7 @@ jobs:
             #shopt -u globstar
             #shopt
             
-            echo "Hello"
+            echo "Hello Toto"
 
             #echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
             #echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
