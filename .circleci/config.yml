@@ -5,93 +5,25 @@ orbs:
 
 jobs:
   build-and-test:
-    parallelism: 3
+    parallelism: 2
     docker:
       - image: cimg/python:3.8
     steps:
       - checkout
       - python/install-packages:
           pkg-manager: pip
-#       - run: |
-#           echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
-#           echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
-#           echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
-
-#       - run:
-#           name: Install stuff
-#           command: |
-#             sudo apt update && sudo apt install python3-pip
-#             sudo pip install -U pytest
-
       - run:
           name: Run tests
-#           working_directory: /tmp
           command: |
-            #set -e
-            #mkdir openapi_server/controllers/beeboo
-            #mv openapi_server/controllers/*.py openapi_server/controllers/beeboo
-            #mv openapi_server/controllers/beeboo/security_controller_.py openapi_server/controllers
-            #shopt -u globstar
-            #shopt
-            
-            echo "Hello Toto"
-
-            #echo "openapi_server.test.test_cart_controller.TestCartController" > class.txt
-            #echo "openapi_server.test.test_image_controller.TestImageController" >> class.txt
-            #echo "openapi_server.test.test_menu_controller.TestMenuController" >> class.txt
-            
-            #circleci tests glob '**/openapi_server/**/*.py'
-
-            #TEST_FILES=$(circleci tests glob "./openapi_server/**/*.py" | circleci tests split)
-            #echo $TEST_FILES
-            circleci tests glob "./openapi_server/{controllers,test}/*.py" > tests_list.txt
-            cat tests_list.txt
-            #SPLIT_LIST=$(circleci tests split --split-by=timings tests_list.txt)
-            #echo $SPLIT_LIST
-            
-            #TESTFILES=$(echo $TEST_FILES | tr "." "/" | sed 's/\(.*\)\//\1.py::/')
-            #echo $TESTFILES
-            #mkdir -p test-results
-            #pytest --verbose --junitxml=test-results/junit.xml $TESTFILES
-      - when:
-          condition:
-            equal: ["split-test", << pipeline.git.branch >>]
-          steps:
-            - store_test_results:
-                path: ./test-results
-            - store_artifacts:
-                path: ./test-results
+            set -e
+            TEST_FILES=$(circleci tests glob "openapi_server/**/test_*.py" | circleci tests split --split-by=timings)
+            mkdir -p test-results
+            pytest --verbose --junitxml=test-results/junit.xml $TEST_FILES
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
 workflows:
   sample:
     jobs:
       - build-and-test
-
-# version: 2.1
-
-# orbs:
-#   python: circleci/python@1.2
-
-# jobs:
-#   build-and-test:
-#     parallelism: 2
-#     docker:
-#       - image: cimg/python:3.8
-#     steps:
-#       - checkout
-#       - python/install-packages:
-#           pkg-manager: pip
-#       - run:
-#           name: Run tests
-#           command: |
-#             set -e
-#             TEST_FILES=$(circleci tests glob "openapi_server/**/test_*.py" | circleci tests split --split-by=timings)
-#             mkdir -p test-results
-#             pytest --verbose --junitxml=test-results/junit.xml $TEST_FILES
-#       - store_test_results:
-#           path: test-results
-#       - store_artifacts:
-#           path: test-results
-# workflows:
-#   sample:
-#     jobs:
-#       - build-and-test
