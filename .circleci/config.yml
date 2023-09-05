@@ -7,7 +7,7 @@ jobs:
   build-and-test:
     parallelism: 3
     machine:
-      - image: ubuntu-2004:2023.07.1
+      image: ubuntu-2004:2023.07.1
     # docker:
     #   - image: cimg/python:3.8
     steps:
