@@ -21,6 +21,23 @@ jobs:
             TEST_FILES=$(circleci tests glob "openapi_server/**/test_*.py" | circleci tests split --split-by=timings)
             mkdir -p test-results
             pytest --verbose --junitxml=test-results/junit.xml $TEST_FILES
+
+      - run:
+          name: Upload results to Buildkite Test Analytic
+          command: |
+            curl \
+              -X POST \
+              -H "Authorization: Token token=\"$BUILDKITE_ANALYTICS_TOKEN\"" \
+              -F "data=@junit.xml" \
+              -F "format=junit" \
+              -F "run_env[CI]=circleci" \
+              -F "run_env[key]=$CIRCLE_WORKFLOW_ID-$CIRCLE_BUILD_NUM" \
+              -F "run_env[number]=$CIRCLE_BUILD_NUM" \
+              -F "run_env[branch]=$CIRCLE_BRANCH" \
+              -F "run_env[commit_sha]=$CIRCLE_SHA1" \
+              -F "run_env[url]=$CIRCLE_BUILD_URL" \
+              https://analytics-api.buildkite.com/v1/uploads
+
       - store_test_results:
           path: test-results
       - store_artifacts:
