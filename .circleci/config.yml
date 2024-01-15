@@ -25,6 +25,7 @@ jobs:
       - run:
           name: Upload results to Buildkite Test Analytic
           command: |
+            cd test-results
             curl \
               -X POST \
               -H "Authorization: Token token=\"$BUILDKITE_ANALYTICS_TOKEN\"" \
