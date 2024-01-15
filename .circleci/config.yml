@@ -37,6 +37,7 @@ jobs:
               -F "run_env[commit_sha]=$CIRCLE_SHA1" \
               -F "run_env[url]=$CIRCLE_BUILD_URL" \
               https://analytics-api.buildkite.com/v1/uploads
+          when: always
 
       - store_test_results:
           path: test-results
