@@ -17,10 +17,13 @@ jobs:
       - run:
           name: Run tests
           command: |
-            set -e
-            TEST_FILES=$(circleci tests glob "openapi_server/**/test_*.py" | circleci tests split --split-by=timings --timings-type=filename)
+            #set -e
             mkdir -p test-results
-            pytest --verbose --junitxml=test-results/junit.xml $TEST_FILES
+            #TEST_FILES=$(circleci tests glob "openapi_server/**/test_*.py" | circleci tests split --split-by=timings --timings-type=filename)
+            TEST_FILES=$(circleci tests glob "openapi_server/**/test_*.py")
+            echo $TEST_FILES | circleci tests run --command="xargs pytest -o junit_family=legacy --junitxml=test-results/junit.xml" --verbose --split-by=timings --timings-type=filename
+            
+            #pytest --verbose --junitxml=test-results/junit.xml $TEST_FILES
 
       - run:
           name: Upload results to Buildkite Test Analytic
